@@ -1,19 +1,21 @@
 import React from 'react';
 
-const Podcast = props => (
+const Podcast = ({ data }) => (
   <div className="podcast">
     <div className="wrapper1">
-      <img className="artwork"></img>
+      <img className="artwork" src={data.image_url}></img>
       <div className="wrapper2">
-        <h2 className="title"></h2>
-        <span className="dateTime"></span>
-        <span className="artist"></span>
+        <h2 className="title">{data.title}</h2>
+        <span className="dateTime">{data.published_at + ' • ' + data.duration}</span>
+        <span className="artist">By {data.show.artist_name}</span>
         <div className="wrapper3">
-          <audio className="player"></audio>
-          <span className="likes"></span>
+          <audio controls className="player" src={data.enclosure_url}></audio>
+          <span className="likes">Likes: {data.likes_count}</span>
         </div>
-        <p className="description"></p>
+        <p className="description">{data.description}</p>
       </div>
     </div>
   </div>
-)
+);
+
+export default Podcast;
