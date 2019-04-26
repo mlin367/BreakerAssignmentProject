@@ -25,7 +25,7 @@ export default class App extends React.Component {
         <div className="app">
           <h1>Breaker Project!</h1>
           <Route exact path='/' render={(props) => <Podcast {...props} data={this.state.episode}/>}/>
-          <Route path='/edit' render={(props) => <EditPodcast {...props} data={this.state.episode}/>}/>
+          <Route path='/edit' render={(props) => <EditPodcast {...props} editEpisode={this.editEpisode} data={this.state.episode}/>}/>
         </div>
       </Router>
     )

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Podcast = ({ data }) => (
   <div className="podcast">
@@ -13,6 +14,7 @@ const Podcast = ({ data }) => (
           <span className="likes">Likes: {data.likes_count}</span>
         </div>
         <p className="description">{data.description}</p>
+        <Link to="/edit">EDIT</Link>
       </div>
     </div>
   </div>
