@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 import { Link } from 'react-router-dom';
 
 export default class EditPodcast extends React.Component {
@@ -16,6 +15,8 @@ export default class EditPodcast extends React.Component {
     };
     this.onInputChange = this.onInputChange.bind(this);
     this.handleOnClick = this.handleOnClick.bind(this);
+    this.handleOnImageUpload = this.handleOnImageUpload.bind(this);
+    this.imageURL = React.createRef();
   }
 
   componentDidMount() {
@@ -50,12 +51,22 @@ export default class EditPodcast extends React.Component {
     this.props.editEpisode({ ...this.state });
   }
 
+  handleOnImageUpload(e) {
+    let image = URL.createObjectURL(e.target.files[0]);
+    this.imageURL.current.value = image;
+    this.setState({
+      image_url: image
+    })
+  }
+
   render() {
     return (
       <div>
         <h2>Edit Episode Details</h2>
         Image URL :
+        <input type="file" onChange={this.handleOnImageUpload}/> or external link :
         <input
+          ref={this.imageURL}
           onChange={e => this.onInputChange(e, 'image_url')}
           type="url"
           value={this.state.image_url}
