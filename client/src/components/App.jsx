@@ -19,8 +19,6 @@ export default class App extends React.Component {
     this.setState({
       episode: this.convertBreakerDateTimeFormat(sampleBreakerData)
     })
-    console.log(moment(new Date()).format('ddd MMM DD, YYYY'))
-    console.log(new Date().getDay())
   }
 
   editEpisode(object) {
@@ -39,8 +37,8 @@ export default class App extends React.Component {
     } = breakerData;
     const { artist_name } = breakerData.show;
     const dateTime = new Date(published_at);
-    const date = moment(dateTime).format('ddd MMM DD, YYYY');
-    const time = moment(dateTime).format('h:mm a');
+    const date = moment(dateTime).format('YYYY-MM-DD');
+    const time = moment(dateTime).format('HH:mm');
     return { artist_name, image_url, title, likes_count, description, date, time };
   }
 

@@ -8,8 +8,9 @@ export default class EditPodcast extends React.Component {
     this.state = {
       image_url: '',
       title: '',
-      published_at: '',
-      show: { artist_name: '' },
+      date: '',
+      time: '',
+      artist_name: '',
       likes_count: '',
       description: ''
     };
@@ -19,33 +20,30 @@ export default class EditPodcast extends React.Component {
 
   componentDidMount() {
     const {
+      artist_name,
       image_url,
       title,
-      published_at,
+      date,
+      time,
       likes_count,
       description
     } = this.props.data;
-    const { artist_name } = this.props.data.show;
+
     this.setState({
-      show: { artist_name },
+      artist_name,
       image_url,
       title,
-      published_at,
+      date,
+      time,
       likes_count,
       description
     });
   }
 
   onInputChange(e, type) {
-    if (type === 'show') {
-      this.setState({
-        show: { artist_name: e.target.value }
-      });
-    } else {
       this.setState({
         [type]: e.target.value
       });
-    }
   }
 
   handleOnClick() {
@@ -67,18 +65,22 @@ export default class EditPodcast extends React.Component {
           onChange={e => this.onInputChange(e, 'title')}
           value={this.state.title}
         />
-        Publish Date and Time :
+        Publish Date :
         <input
-          onChange={e => this.onInputChange(e, 'published_at')}
-          type="datetime-local"
-          value={moment(new Date(this.state.published_at)).format(
-            'YYYY-MM-DDThh:mm A'
-          )}
+          onChange={e => this.onInputChange(e, 'date')}
+          type="date"
+          value={this.state.date}
+        />
+        Publish Time :
+        <input
+          onChange={e => this.onInputChange(e, 'time')}
+          type="time"
+          value={this.state.time}
         />
         Artist Name :
         <input
-          onChange={e => this.onInputChange(e, 'show')}
-          value={this.state.show.artist_name}
+          onChange={e => this.onInputChange(e, 'artist_name')}
+          value={this.state.artist_name}
         />
         Likes :
         <input
