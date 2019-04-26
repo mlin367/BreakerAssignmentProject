@@ -13,13 +13,23 @@ const Podcast = ({ data }) => {
     return moment(time, 'HH:mm').format('h:mm a');
   }
 
+  const prettifyDuration = seconds => {
+    if (seconds > 60) {
+      let minutes = Math.floor(seconds/60);
+      let secs = seconds % 60;
+      return `${minutes} min, ${secs} sec`;
+    } else {
+      return `${seconds} sec`;
+    }
+  }
+
   return (
     <div className="podcast">
       <div className="wrapper1">
         <img className="artwork" src={data.image_url}></img>
         <div className="wrapper2">
           <h2 className="title">{data.title}</h2>
-          <span className="dateTime">{`${prettifyDate(data.date)} at ${prettifyTime(data.time)} • ${sampleBreakerData.duration}`}</span>
+          <span className="dateTime">{`${prettifyDate(data.date)} at ${prettifyTime(data.time)} • ${prettifyDuration(sampleBreakerData.duration)}`}</span>
           <span className="artist">By {data.artist_name}</span>
           <div className="wrapper3">
             <audio controls className="player" src={sampleBreakerData.enclosure_url}></audio>
