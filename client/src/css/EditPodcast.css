@@ -1,0 +1,18 @@
+.editPod {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+input {
+  width: 25%;
+}
+
+/* .editPod input:nth-child(3) {
+  width: 50%;
+} */
+
+textarea {
+  width: 75%;
+}

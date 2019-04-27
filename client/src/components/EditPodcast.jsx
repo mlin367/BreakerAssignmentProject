@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../css/EditPodcast.css';
 
 export default class EditPodcast extends React.Component {
   constructor(props) {
@@ -47,8 +48,13 @@ export default class EditPodcast extends React.Component {
       });
   }
 
-  handleOnClick() {
-    this.props.editEpisode({ ...this.state });
+  handleOnClick(e) {
+    if (!Number(this.state.likes_count)) {
+      alert('likes must be a number!')
+      e.preventDefault();
+    } else {
+      this.props.editEpisode({ ...this.state });
+    }
   }
 
   handleOnImageUpload(e) {
@@ -61,7 +67,7 @@ export default class EditPodcast extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="editPod">
         <h2>Edit Episode Details</h2>
         Image URL :
         <input type="file" onChange={this.handleOnImageUpload}/> or external link :
@@ -103,13 +109,15 @@ export default class EditPodcast extends React.Component {
         <textarea
           onChange={e => this.onInputChange(e, 'description')}
           value={this.state.description}
+          rows="4"
+          cols="50"
         />
         <Link to="/">
           <button onClick={this.handleOnClick} className="submit">
             Edit
           </button>
         </Link>
-        <Link to="/">Back</Link>
+        <Link to="/">Cancel</Link>
       </div>
     );
   }

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import sampleBreakerData from '../data/sampleBreakerData';
+import '../css/Podcast.css';
 
 const Podcast = ({ data }) => {
 
@@ -30,15 +31,15 @@ const Podcast = ({ data }) => {
         <div className="wrapper2">
           <h2 className="title">{data.title}</h2>
           <span className="dateTime">{`${prettifyDate(data.date)} at ${prettifyTime(data.time)} • ${prettifyDuration(sampleBreakerData.duration)}`}</span>
-          <span className="artist">By {data.artist_name}</span>
+          <div className="artistWrapper">By <span className="artist">{data.artist_name}</span></div>
           <div className="wrapper3">
             <audio controls className="player" src={sampleBreakerData.enclosure_url}></audio>
             <span className="likes">Likes: {data.likes_count}</span>
           </div>
-          <p className="description">{data.description}</p>
-          <Link to="/edit">EDIT</Link>
         </div>
       </div>
+      <p className="description">{data.description}</p>
+      <Link to="/edit">EDIT</Link>
     </div>
   )
 };
