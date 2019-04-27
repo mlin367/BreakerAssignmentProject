@@ -4,6 +4,7 @@ Assignment project for breaker
 Requires Node.js!
 
 To run this app locally on your machine:
+
 Clone the repo
 
 Run npm install in the root directory
